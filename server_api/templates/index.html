@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+{% block title %} TBOT LOGIN {% endblock title %}
+
+{% block content %}
+<form accept="{{ url_for('index') }}" method="POST">
+    <label> Admin Login </label>
+    <input type="text" name="username">
+    <input name="password" type="password">
+    <input type="submit" value="LOGIN">
+</form>
+{% endblock content %}

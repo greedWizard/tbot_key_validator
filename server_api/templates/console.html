@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% block title %} TBOT LOGIN {% endblock title %}
+
+{% block content %}
+<h3>Generated keys</h3>
+<table>
+    <thead>
+        <tr>
+            <td>
+                GENERATED KEY
+            </td>
+            <td>
+                EXPIRES
+            </td>
+        </tr>
+    </thead>
+    <tbody>
+        {% for key in keys %}
+            <tr>
+                <td>
+                    {{ key.key_string }}
+                </td>
+                <td>
+                    {{ key.expiration_date.strftime('%d %b %Y %H:%M') }}
+                </td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+<h3>Generate new keys</h3>
+<form action="{{ url_for('generate_keys') }}" method="POST">
+    <label> Days: </label>
+    <input type="number" step="1" min="1" name="days">
+    <label> Hours: </label>
+    <input type="number" step="1" min="1" name="hours">
+    <label> Count: </label>
+    <input type="number" name="count" min="1" step="1">
+    <input type="submit" value="GENERATE">
+</form>
+<h3>Delete keys</h3>
+<form action="{{ url_for('delete_expired_keys') }}" method="POST">
+    <input type="checkbox" name="all">
+    <label>Delete all keys?</label> <br>
+    <input type="submit" value="DELETE">
+</form>
+{% endblock content %}
