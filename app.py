@@ -38,7 +38,7 @@ def index():
             request.form.get('password')):
             session['logged_in'] = True
             return redirect(url_for('console'))
-            
+
     return render_template('index.html')
 
 
@@ -57,7 +57,7 @@ def check_key():
         return json.dumps({
             'error': f'expired {checked_key.expiration_date.strftime("%d %b %Y %H:%M")}'
         })
-    
+
     return json.dumps({
         'status': 'success',
     })
@@ -76,8 +76,8 @@ def console():
 def generate_keys():
     if request.method == 'POST':
         i = request.form.get('count', 1, type=int)
-        days = request.form.get('days', 1, type=int)
-        hours = request.form.get('hours', 1, type=int)
+        days = request.form.get('days', 0, type=int)
+        hours = request.form.get('hours', 0, type=int)
 
         for i in range(i):
             db.session.add(Key(days=days, hours=hours))

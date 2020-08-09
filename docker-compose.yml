@@ -11,7 +11,7 @@ services:
       - TBOT_ADMIN_PASSWORD='qwerty'
       - TBOT_ADMIN_USERNAME='admin'
     ports:
-      - "5000:5000"
+      - "80:5000"
     restart: always
     volumes:
       - flask_data:/var/lib/adserver/data
